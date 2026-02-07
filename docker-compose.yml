@@ -1,14 +1,17 @@
-version: "3.9"
-
 services:
   crypto-alert-bot:
-    build: .
+    image: crypto-alert-bot
+    container_name: crypto-alert-bot
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     env_file:
-      - .secret
+      - ./settings/.secrets
     environment:
       CHECK_INTERVAL_MINUTES: "5"
       NOTIFY_COOLDOWN_HOURS: "24"
       DB_PATH: "/app/alerts.db"
     volumes:
       - ./alerts.db:/app/alerts.db
-    restart: unless-stopped
+    command: sh -c "pdm run start_bot"

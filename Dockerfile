@@ -1,13 +1,18 @@
-FROM python:3.11-slim
+FROM python:3.13-alpine3.22
 
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 WORKDIR /app
 
-COPY requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt
+RUN apk update && apk upgrade && \
+    rm -rf /var/cache/apk/* && \
+    pip install --no-cache-dir pdm
+
+COPY pyproject.toml pdm.lock ./
+RUN pdm sync && \
+    pdm cache clear
+
 
 COPY . /app
 
-CMD ["python", "bot.py"]
