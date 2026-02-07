@@ -17,6 +17,20 @@ pip install -r requirements.txt
 BOT_TOKEN=ваш_токен python bot.py
 ```
 
+## Запуск в Docker
+
+1. Скопируйте пример секретов и укажите токен:
+
+```bash
+cp .secret_example .secret
+```
+
+2. Соберите и запустите контейнер:
+
+```bash
+docker compose up --build -d
+```
+
 ## Команды
 
 - `/add BTCUSDT 10000` — добавить алерт.
@@ -29,3 +43,5 @@ BOT_TOKEN=ваш_токен python bot.py
 - `CHECK_INTERVAL_MINUTES` — интервал проверки, минуты (по умолчанию 5).
 - `NOTIFY_COOLDOWN_HOURS` — минимальный интервал между оповещениями по одному алерту (по умолчанию 24 часа).
 - `DB_PATH` — путь к sqlite базе (по умолчанию `alerts.db`).
+
+В Docker переменные окружения задаются в `docker-compose.yml`, а секретные значения — в `.secret`.
