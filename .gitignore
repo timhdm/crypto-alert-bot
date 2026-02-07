@@ -5,4 +5,5 @@ __pycache__/
 
 alerts.db
 
+.secrets
 .secret
