@@ -5,16 +5,16 @@
 ## Запуск
 
 1. Создайте бота у @BotFather и получите токен.
-2. Установите зависимости:
+2. Установите зависимости (нужен Python 3.13 и PDM):
 
 ```bash
-pip install -r requirements.txt
+pdm install
 ```
 
 3. Запустите:
 
 ```bash
-BOT_TOKEN=ваш_токен python bot.py
+BOT_TOKEN=ваш_токен pdm run python bot.py
 ```
 
 ## Запуск в Docker
@@ -36,6 +36,8 @@ docker compose up --build -d
 - `/add BTCUSDT 10000` — добавить алерт.
 - `/list` — список алертов.
 - `/remove <id>` — удалить алерт.
+- `/now` — текущий курс BTC.
+- `/now ADAUSDT` — текущий курс указанной пары.
 
 ## Переменные окружения
 
